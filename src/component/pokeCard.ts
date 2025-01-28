@@ -23,34 +23,35 @@ type Type = {
 type Sprite = {
   other: {
     "official-artwork": {
-      front_default: string
-    }
-  }
-}
+      front_default: string;
+    };
+  };
+};
 
 type Pokemon = {
-  abilities: Array<Object>,
-  base_experience: number,
-  cries: Object,
-  forms: Array<Object>,
-  game_indices: Array<Object>,
-  height: number,
-  held_items: Array<Object>,
-  id: number,
-  is_default: boolean,
-  location_area_encounters: string,
-  moves: Array<Object>,
-  name: string,
-  order: number,
-  past_abilities: Array<Object>,
-  past_types: Array<Object>,
-  species: Object,
-  sprites: Sprite,
-  stats: Array<Stat>,
-  types: Array<Type>,
-  weight: number
-
-}
+  abilities: Array<Object>;
+  base_experience: number;
+  cries: {
+    latest: string
+  }
+  forms: Array<Object>;
+  game_indices: Array<Object>;
+  height: number;
+  held_items: Array<Object>;
+  id: number;
+  is_default: boolean;
+  location_area_encounters: string;
+  moves: Array<Object>;
+  name: string;
+  order: number;
+  past_abilities: Array<Object>;
+  past_types: Array<Object>;
+  species: Object;
+  sprites: Sprite;
+  stats: Array<Stat>;
+  types: Array<Type>;
+  weight: number;
+};
 
 @customElement("poke-card")
 export class PokeCard extends LitElement {
@@ -59,13 +60,13 @@ export class PokeCard extends LitElement {
   `;
 
   statConversionTable = {
-    "hp": "hp",
-    "attack": "atk",
-    "defense": "def",
+    hp: "hp",
+    attack: "atk",
+    defense: "def",
     "special-attack": "spa",
     "special-defense": "spd",
-    "speed": "spe"
-  }
+    speed: "spe",
+  };
 
   @property()
   pokeId: Number = 1;
@@ -111,6 +112,10 @@ export class PokeCard extends LitElement {
             </div>
           </div>
           <div class="base-stats">${this._displayStats(pokemon.stats)}</div>
+          <div class="audio-player">
+            <button id="play-cry" class=${"play-button " + pokemon.types[0].type.name} @click="${this._playSound}">🔊 Play Cry</button>
+            <audio id="pokemon-cry" src=${pokemon.cries.latest}></audio>
+          </div>
         </div>
       </div>
     `;
@@ -120,7 +125,16 @@ export class PokeCard extends LitElement {
     return stats.map(
       (stat: Stat) => html`
         <div class="stat-item">
-          <div class=${"stat-name " + this.statConversionTable[stat.stat.name as keyof typeof this.statConversionTable]}>${this.statConversionTable[stat.stat.name as keyof typeof this.statConversionTable]}</div>
+          <div
+            class=${"stat-name " +
+            this.statConversionTable[
+              stat.stat.name as keyof typeof this.statConversionTable
+            ]}
+          >
+            ${this.statConversionTable[
+              stat.stat.name as keyof typeof this.statConversionTable
+            ]}
+          </div>
           <div class="stat-value">${stat.base_stat}</div>
         </div>
       `
@@ -129,8 +143,16 @@ export class PokeCard extends LitElement {
 
   _displayTypes(types: Type[]) {
     return types.map(
-      (type: Type) => html` <span class=${"type " + type.type.name}>${type.type.name}</span> `
+      (type: Type) =>
+        html` <span class=${"type " + type.type.name}>${type.type.name}</span> `
     );
+  }
+
+  private _playSound() {
+    const audio = this.shadowRoot?.querySelector('audio') as HTMLAudioElement;
+    if (audio) {
+      audio.play();
+    }
   }
 
   override render() {

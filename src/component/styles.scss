@@ -290,5 +290,151 @@ body {
         }
       }
     }
+
+    .audio-player {
+        margin-top: 16px;
+        text-align: center;
+      
+        .play-button {
+          color: #fff;
+          border: none;
+          border-radius: 8px;
+          padding: 10px 16px;
+          font-size: 1rem;
+          font-weight: bold;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+
+          &.normal {
+            background-color: #f5f5dc;
+            &:hover {
+                background-color: #A8A77A;
+              }
+          }
+        
+          &.fire {
+            background-color: #ffe6cc;
+            &:hover {
+                background-color: #EE8130;
+              }
+          }
+        
+          &.water {
+            background-color: #e3f2fd;
+            &:hover {
+                background-color: #6390F0;
+              }
+          }
+        
+          &.electric {
+            background-color: #fff8e1;
+            &:hover {
+                background-color: #F7D02C;
+              }
+          }
+        
+          &.grass {
+            background-color: #e8f5e9;
+            &:hover {
+                background-color: #7AC74C;
+              }
+          }
+        
+          &.ice {
+            background-color: #e0f7fa;
+            &:hover {
+                background-color: #96D9D6;
+              }
+          }
+        
+          &.fighting {
+            background-color: #fbe9e7;
+            &:hover {
+                background-color: #C22E28;
+              }
+          }
+        
+          &.poison {
+            background-color: #f3e5f5;
+            &:hover {
+                background-color: #A33EA1;
+              }
+          }
+        
+          &.ground {
+            background-color: #f9e4d7;
+            &:hover {
+                background-color: #E2BF65;
+              }
+          }
+        
+          &.flying {
+            background-color: #ede7f6;
+            &:hover {
+                background-color: #A98FF3;
+              }
+          }
+        
+          &.psychic {
+            background-color: #fce4ec;
+            &:hover {
+                background-color: #F95587;
+              }
+          }
+        
+          &.bug {
+            background-color: #f1f8e9;
+            &:hover {
+                background-color: #A6B91A;
+              }
+          }
+        
+          &.rock {
+            background-color: #e9e3db;
+            &:hover {
+                background-color: #B6A136;
+              }
+          }
+        
+          &.ghost {
+            background-color: #ede7f6;
+            &:hover {
+                background-color: #735797;
+              }
+          }
+        
+          &.dragon {
+            background-color: #e3e8fc;
+            &:hover {
+                background-color: #6F35FC;
+              }
+          }
+        
+          &.dark {
+            background-color: #e0d9d5;
+            &:hover {
+                background-color: #705746;
+              }
+          }
+        
+          &.steel {
+            background-color: #f3f3f3;
+            &:hover {
+                background-color: #B7B7CE;
+              }
+          }
+        
+          &.fairy {
+            background-color: #fde4f7;
+            &:hover {
+                background-color: #D685AD;
+              }
+          }
+        }
+      
+        audio {
+          display: none;
+        }
+      }
   }
   
